@@ -38,7 +38,7 @@ function letters.register_letters(modname, subname, from_node, description, tile
 		local descu = description.. " " ..row[4]
 		local tilesl = tiles.. "^letters_" ..row[1].. "_overlay.png^[makealpha:255,126,126"
 		local tilesu = tiles.. "^letters_" ..row[2].. "_overlay.png^[makealpha:255,126,126"
-		local groups = {not_in_creative_inventory=1, not_in_craft_guide=1, oddly_breakable_by_hand=1, attached_node=1}
+		local groups = {not_in_creative_inventory=1, not_in_craft_guide=1, oddly_breakable_by_hand=1, attached_node=1, ud_param2_colorable = 1}
 		minetest.register_node(":" ..modname..":"..namel, {
 			description = descl,
 			drawtype = "signlike",
@@ -46,7 +46,11 @@ function letters.register_letters(modname, subname, from_node, description, tile
 			inventory_image = tilesl,
 			wield_image = tilesl,
 			paramtype = "light",
-			paramtype2 = "wallmounted",
+			paramtype2 = "colorwallmounted",
+			palette = "unifieddyes_palette_colorwallmounted.png",			
+			after_place_node = unifieddyes.recolor_on_place,
+			on_rotate = unifieddyes.fix_after_screwdriver_nsew,
+			after_dig_node = unifieddyes.after_dig_node,				
 			sunlight_propagates = true,
 			is_ground_content = false,
 			walkable = false,
@@ -66,7 +70,11 @@ function letters.register_letters(modname, subname, from_node, description, tile
 			inventory_image = tilesu,
 			wield_image = tilesu,
 			paramtype = "light",
-			paramtype2 = "wallmounted",
+			paramtype2 = "colorwallmounted",
+			palette = "unifieddyes_palette_colorwallmounted.png",				
+			after_place_node = unifieddyes.recolor_on_place,
+			on_rotate = unifieddyes.fix_after_screwdriver_nsew,
+			after_dig_node = unifieddyes.after_dig_node,	
 			sunlight_propagates = true,
 			is_ground_content = false,
 			walkable = false,
